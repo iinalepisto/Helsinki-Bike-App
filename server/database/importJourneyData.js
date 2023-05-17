@@ -83,18 +83,18 @@ const saveBatch = async (batch) => {
     }
 }
 
-const readJourneyFiles = async (file1, file2, file3) => {
+const readJourneyFiles = async (journeyFile1, journeyFile2, journeyFile3) => {
     try {
         const isOneJourney = await Journey.findOne({});
         if (isOneJourney === null) {
-            await importJourneyData(file1);
-            await importJourneyData(file2);
-            await importJourneyData(file3);
+            await importJourneyData(journeyFile1);
+            await importJourneyData(journeyFile2);
+            await importJourneyData(journeyFile3);
         } else {
             console.log("Journey data already imported!")
         }
     } catch (error) {
-        error.message(`Error while importing journey data: ${error}`);
+        console.error(`Error while importing journey data: ${error}`);
     }
 }
 

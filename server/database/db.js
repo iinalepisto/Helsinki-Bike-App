@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import path from "path";
 import readJourneyFiles from "./importJourneyData.js";
+import readStationFiles from "./importStationData.js";
 
 dotenv.config();
 const url = process.env.MONGO_URL;
@@ -19,6 +20,7 @@ const startMongoDB = async () => {
             useUnifiedTopology: true,
         });
         readJourneyFiles(journey1, journey2, journey3);
+        readStationFiles(stations);
         console.log("DB connected");
     } catch (error) {
         console.error("Error connecting to database ", error);
