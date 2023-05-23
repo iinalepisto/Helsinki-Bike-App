@@ -12,3 +12,9 @@
 .topContainer {
   margin: 1rem;
 }
+
+.stationContainer {
+  display: flex;
+  margin: 1rem;
+  flex-direction: row;
+}

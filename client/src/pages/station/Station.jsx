@@ -22,15 +22,15 @@ const Station = () => {
     }, [id]);
 
     return (
-        <div>
+        <>
             {Object.keys(station).length === 0 ?
                 (<Spinner />) : (
-                    <>
+                    <div className='stationContainer'>
                         <StationInfo station={station} />
                         <StationMap station={station} />
-                    </>
+                    </div>
                 )}
-        </div>
+        </>
     )
 }
 
