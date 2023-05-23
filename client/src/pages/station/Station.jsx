@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchStation } from '../../utils/api';
 import Spinner from '../../components/spinner/Spinner';
 import StationInfo from '../../components/stationInfo/StationInfo';
+import StationMap from '../../components/stationMap/StationMap';
 
 const Station = () => {
     const [station, setStation] = useState({});
@@ -22,7 +23,13 @@ const Station = () => {
 
     return (
         <div>
-            {Object.keys(station).length === 0 ? (<Spinner />) : (<StationInfo station={station} />)}
+            {Object.keys(station).length === 0 ?
+                (<Spinner />) : (
+                    <>
+                        <StationInfo station={station} />
+                        <StationMap station={station} />
+                    </>
+                )}
         </div>
     )
 }
