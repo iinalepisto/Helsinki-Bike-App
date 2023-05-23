@@ -1,0 +1,23 @@
+.listItems {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    margin: 1rem;
+}
+
+.listItem div {
+    flex: 1;
+    margin: 5px;
+    width: 25%;
+}
+
+.listItem {
+    color: black;
+    display: flex;
+}
+
+.listItem:hover {
+    cursor: pointer;
+    background-color: rgb(0, 122, 201);
+    color: white;
+}

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { fetchStations } from '../../utils/api';
 import CustomPagination from '../../components/pagination/CustomPagination';
+import ListItems from '../../components/listItems/ListItems';
+
 
 const Stations = () => {
     const [stations, setStations] = useState([]);
@@ -24,6 +26,7 @@ const Stations = () => {
     }, [page, limit, sortBy, sortByOrder]);
     return (
         <div>
+            <ListItems items={stations} type={"stations"} />
             <CustomPagination page={page} count={count} limit={limit} setPage={setPage} />
         </div>
     )
