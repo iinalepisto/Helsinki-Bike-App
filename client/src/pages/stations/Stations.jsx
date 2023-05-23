@@ -36,7 +36,6 @@ const Stations = () => {
         }
     };
 
-
     return (
         <div>
             <SortingList type={"stations"} sortBy={sortBy} sortByOrder={sortByOrder} handleSorting={handleSorting} />
