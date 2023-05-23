@@ -19,20 +19,22 @@ const SortingList = ({ type, sortBy, sortByOrder, handleSorting }) => {
         )
     }
     else if (type === "journeys") {
-        <div className='sortingList'>
-            <div onClick={handleSorting} value="departureStationName">
-                Lähtöasema {sortBy === "departureStationName" ? sortByOrder === "asc" ? <ArrowDownward fontSize="inherit" /> : <ArrowUpward fontSize="inherit" /> : null}
+        return (
+            <div className='sortingList'>
+                <div onClick={handleSorting} value="departureStationName">
+                    Lähtöasema {sortBy === "departureStationName" ? sortByOrder === "asc" ? <ArrowDownward fontSize="inherit" /> : <ArrowUpward fontSize="inherit" /> : null}
+                </div>
+                <div onClick={handleSorting} value="returnStationName">
+                    Pääteasema {sortBy === "returnStationName" ? sortByOrder === "asc" ? <ArrowDownward fontSize="inherit" /> : <ArrowUpward fontSize="inherit" /> : null}
+                </div>
+                <div onClick={handleSorting} value="coveredDistanceM">
+                    Matkan pituus {sortBy === "coveredDistanceM" ? sortByOrder === "asc" ? <ArrowDownward fontSize="inherit" /> : <ArrowUpward fontSize="inherit" /> : null}
+                </div>
+                <div onClick={handleSorting} value="durationSec">
+                    Matkan kesto {sortBy === "durationSec" ? sortByOrder === "asc" ? <ArrowDownward fontSize="inherit" /> : <ArrowUpward fontSize="inherit" /> : null}
+                </div>
             </div>
-            <div onClick={handleSorting} value="returnStationName">
-                Pääteasema {sortBy === "returnStationName" ? sortByOrder === "asc" ? <ArrowDownward fontSize="inherit" /> : <ArrowUpward fontSize="inherit" /> : null}
-            </div>
-            <div onClick={handleSorting} value="coveredDistanceM">
-                Matkan pituus {sortBy === "coveredDistanceM" ? sortByOrder === "asc" ? <ArrowDownward fontSize="inherit" /> : <ArrowUpward fontSize="inherit" /> : null}
-            </div>
-            <div onClick={handleSorting} value="durationSec">
-                Matkan kesto {sortBy === "durationSec" ? sortByOrder === "asc" ? <ArrowDownward fontSize="inherit" /> : <ArrowUpward fontSize="inherit" /> : null}
-            </div>
-        </div>
+        )
     }
 }
 export default SortingList
