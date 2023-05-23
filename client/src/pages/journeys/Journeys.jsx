@@ -3,6 +3,7 @@ import { fetchJourneys } from '../../utils/api';
 import SortingList from '../../components/sortingList/SortingList';
 import ListItems from '../../components/listItems/ListItems';
 import CustomPagination from '../../components/pagination/CustomPagination';
+import Spinner from '../../components/spinner/Spinner';
 
 const Journeys = () => {
     const [journeys, setJourneys] = useState([]);
@@ -16,9 +17,11 @@ const Journeys = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                setIsLoading(true);
                 const res = await fetchJourneys(page, limit, sortBy, sortByOrder);
                 setJourneys(res.journeys);
                 setCount(res.totalCount);
+                setIsLoading(false);
             } catch (error) {
                 console.error("Error while fetching stations data:", error);
             }
@@ -38,8 +41,14 @@ const Journeys = () => {
     return (
         <div>
             <SortingList type={"journeys"} sortBy={sortBy} sortByOrder={sortByOrder} handleSorting={handleSorting} />
-            <ListItems items={journeys} type={"journeys"} />
-            <CustomPagination page={page} count={count} limit={limit} setPage={setPage} />
+            {isLoading ? (
+                <Spinner />
+            ) : (
+                <>
+                    <ListItems items={journeys} type={"journeys"} />
+                    <CustomPagination page={page} count={count} limit={limit} setPage={setPage} />
+                </>
+            )}
         </div>
     )
 }
