@@ -8,3 +8,7 @@
   text-decoration: none;
   list-style: none;
 }
+
+.topContainer {
+  margin: 1rem;
+}

@@ -38,6 +38,9 @@ const Stations = () => {
 
     return (
         <div>
+            <div className='topContainer'>
+                <h1>Asemat</h1>
+            </div>
             <SortingList type={"stations"} sortBy={sortBy} sortByOrder={sortByOrder} handleSorting={handleSorting} />
             <ListItems items={stations} type={"stations"} />
             <CustomPagination page={page} count={count} limit={limit} setPage={setPage} />

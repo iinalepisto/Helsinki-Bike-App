@@ -40,6 +40,9 @@ const Journeys = () => {
     };
     return (
         <div>
+            <div className='topContainer'>
+                <h1>Matkat</h1>
+            </div>
             <SortingList type={"journeys"} sortBy={sortBy} sortByOrder={sortByOrder} handleSorting={handleSorting} />
             {isLoading ? (
                 <Spinner />
