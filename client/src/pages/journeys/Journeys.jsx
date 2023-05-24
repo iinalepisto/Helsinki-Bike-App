@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchJourneys } from '../../utils/api';
+import { fetchJourneyCount, fetchJourneys } from '../../utils/api';
 import SortingList from '../../components/sortingList/SortingList';
 import ListItems from '../../components/listItems/ListItems';
 import CustomPagination from '../../components/pagination/CustomPagination';
@@ -18,9 +18,13 @@ const Journeys = () => {
         const fetchData = async () => {
             try {
                 setIsLoading(true);
+                if (count === 0) {
+                    const countRes = await fetchJourneyCount();
+                    setCount(countRes.totalCount);
+                    console.log(count);
+                }
                 const res = await fetchJourneys(page, limit, sortBy, sortByOrder);
                 setJourneys(res.journeys);
-                setCount(res.totalCount);
                 setIsLoading(false);
             } catch (error) {
                 console.error("Error while fetching stations data:", error);

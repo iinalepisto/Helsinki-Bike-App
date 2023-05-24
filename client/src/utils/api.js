@@ -34,10 +34,9 @@ export const fetchStationCoordinates = async (id) => {
 export const fetchJourneys = async (page, limit, sortBy, sortByOrder) => {
     try {
         const res = await api.get(`/api/journeys?page=${page - 1}&limit=${limit}&sortBy=${sortBy}&sortOrder=${sortByOrder}`);
-        return res.data
+        return res.data;
     } catch (error) {
         throw new Error("Error while fetching journeys data");
-
     }
 }
 
@@ -47,6 +46,14 @@ export const fetchJourney = async (id) => {
         return res.data
     } catch (error) {
         throw new Error("Error while fetching journey data");
+    }
+}
 
+export const fetchJourneyCount = async () => {
+    try {
+        const res = await api.get(`/api/journeys/totalcount`);
+        return res.data;
+    } catch (error) {
+        throw new Error("Error while fetching count data");
     }
 }
