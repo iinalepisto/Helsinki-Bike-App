@@ -59,4 +59,14 @@ export const stationCoordinates = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-} 
+}
+
+export const allStationsCoordinates = async (req, res) => {
+    try {
+        const stations = await Station.find({}, { nimi: 1, y: 1, x: 1 });
+        const coordinates = stations.map(station => ({ nimi: station.nimi, y: station.y, x: station.x })); // Muuntaa tulokset haluttuun muotoon
+        res.status(200).json(coordinates);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}

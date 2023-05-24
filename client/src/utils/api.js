@@ -31,6 +31,15 @@ export const fetchStationCoordinates = async (id) => {
     }
 }
 
+export const fetchAllStationCoordinates = async () => {
+    try {
+        const res = await api.get(`/api/stations/coordinates`);
+        return res.data;
+    } catch (error) {
+        throw new Error("Error while fetching station coordinates data")
+    }
+}
+
 export const fetchJourneys = async (page, limit, sortBy, sortByOrder) => {
     try {
         const res = await api.get(`/api/journeys?page=${page - 1}&limit=${limit}&sortBy=${sortBy}&sortOrder=${sortByOrder}`);
