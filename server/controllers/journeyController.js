@@ -4,8 +4,6 @@ export const allJourneys = async (req, res) => {
     const { page = 0, limit = 20, sortBy = "departureTime", sortOrder = "asc" } = req.query;
 
     try {
-        const totalCount = await Journey.countDocuments({
-        }).exec();
         const sortObj = {};
         sortObj[sortBy] = sortOrder === 'desc' ? -1 : 1;
         const journeys = await Journey.find()
@@ -13,7 +11,16 @@ export const allJourneys = async (req, res) => {
             .limit(limit)
             .sort({ [sortBy]: 1 })
             .exec();
-        res.status(200).json({ totalCount, journeys });
+        res.status(200).json({ journeys });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
+export const getTotalJourneyCount = async (req, res) => {
+    try {
+        const totalCount = await Journey.countDocuments({}).exec();
+        res.status(200).json({ totalCount: totalCount });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

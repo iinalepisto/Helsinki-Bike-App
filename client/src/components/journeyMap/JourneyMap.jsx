@@ -34,7 +34,6 @@ const JourneyMap = ({ journey }) => {
 
                 setDepartureCoordinates([depRes.y, depRes.x]);
                 setReturnCoordinates([retRes.y, depRes.x]);
-                console.log(depRes);
                 setIsloading(false);
             } catch (error) {
                 console.error("Error while fetching station data:", error);
