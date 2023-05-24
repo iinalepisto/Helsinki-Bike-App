@@ -1,6 +1,8 @@
+@import url("https://fonts.google.com/share?selection.family=Roboto%20Mono:wght@100");
+
 .App {
   margin: 10px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Roboto Mono', monospace;
   font-size: 18px;
 }
 
