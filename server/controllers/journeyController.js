@@ -5,11 +5,11 @@ export const allJourneys = async (req, res) => {
 
     try {
         const sortObj = {};
-        sortObj[sortBy] = sortOrder === 'desc' ? -1 : 1;
-        const journeys = await Journey.find()
+        sortObj[sortBy] = sortOrder === "desc" ? -1 : 1;
+        const journeys = await Journey.find({})
             .skip(page * limit)
             .limit(limit)
-            .sort({ [sortBy]: 1 })
+            .sort(sortObj)
             .exec();
         res.status(200).json({ journeys });
     } catch (error) {

@@ -21,7 +21,6 @@ const Journeys = () => {
                 if (count === 0) {
                     const countRes = await fetchJourneyCount();
                     setCount(countRes.totalCount);
-                    console.log(count);
                 }
                 const res = await fetchJourneys(page, limit, sortBy, sortByOrder);
                 setJourneys(res.journeys);
