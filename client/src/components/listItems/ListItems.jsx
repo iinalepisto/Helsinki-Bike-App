@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import "./ListItems.css";
+import { calculateDistance, calculateDuration } from '../../utils/journeyUtils';
 
 const ListItems = ({ items, type }) => {
     if (type === 'stations') {
@@ -19,11 +20,11 @@ const ListItems = ({ items, type }) => {
         return (
             <div className='listItems'>
                 {items.map(journey => (
-                    <Link to={`/journeys/${journey.id}`} key={journey.id} className='link listItem' value={journey}>
+                    <Link to={`/journeys/${journey._id}`} key={journey._id} className='link listItem' value={journey}>
                         <div>{journey.departureStationName}</div>
                         <div>{journey.returnStationName}</div>
-                        <div>{Math.round(journey.coveredDistanceM / 1000 * 1000) / 1000} km</div>
-                        <div>{Math.floor(journey.durationSec / 60)} min {journey.durationSec % 60} s</div>
+                        <div> {calculateDistance(journey.coveredDistanceM)} km</div>
+                        <div> {calculateDuration(journey.durationSec).minutes} min {calculateDuration(journey.durationSec).seconds} s</div>
                     </Link>
                 ))}
             </div>
