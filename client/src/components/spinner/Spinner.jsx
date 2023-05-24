@@ -12,7 +12,7 @@ const Spinner = () => {
                 <div className="stick stick5"></div>
                 <div className="stick stick6"></div>
             </div>
-            <p>Ladataan..</p>
+            <p className="loadingText">Ladataan..</p>
         </div>
     )
 }
