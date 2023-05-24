@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
+import Spinner from "../../components/spinner/Spinner";
 
 const Home = () => {
     return (
-        <div>Home</div>
+        <div>
+            <Spinner />
+        </div>
     )
 }
 
