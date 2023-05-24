@@ -1,10 +1,11 @@
 import React from 'react';
-import Spinner from "../../components/spinner/Spinner";
+import HomeMap from '../../components/homeMap/HomeMap';
+
 
 const Home = () => {
     return (
         <div>
-            <Spinner />
+            <HomeMap />
         </div>
     )
 }
