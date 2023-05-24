@@ -9,6 +9,7 @@ import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
 const StationMap = ({ station }) => {
 
+
     let DefaultIcon = L.icon({
         iconUrl: icon,
         iconRetinaUrl: iconRetinaUrl,

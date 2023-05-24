@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchJourney } from '../../utils/api';
 import Spinner from '../../components/spinner/Spinner';
 import JourneyInfo from '../../components/journeyInfo/JourneyInfo';
+import JourneyMap from '../../components/journeyMap/JourneyMap';
 
 const Journey = () => {
     const [journey, setJourney] = useState({});
@@ -25,6 +26,7 @@ const Journey = () => {
                 (<Spinner />) : (
                     <div className='stationContainer'>
                         <JourneyInfo journey={journey} />
+                        <JourneyMap journey={journey} />
                     </div>
                 )}
         </>
