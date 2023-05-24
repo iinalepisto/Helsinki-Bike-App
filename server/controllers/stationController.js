@@ -55,7 +55,7 @@ export const stationCoordinates = async (req, res) => {
         if (!station) {
             return res.status(404).json({ message: "Station not found" });
         }
-        res.status(200).json({ x: station.x, y: station.y });
+        res.status(200).json({ y: station.y, x: station.x });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
