@@ -24,7 +24,7 @@ const Journey = () => {
         <>
             {Object.keys(journey).length === 0 ?
                 (<Spinner />) : (
-                    <div className='stationContainer'>
+                    <div className='pageContainer'>
                         <JourneyInfo journey={journey} />
                         <JourneyMap journey={journey} />
                     </div>

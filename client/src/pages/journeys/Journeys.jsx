@@ -43,7 +43,7 @@ const Journeys = () => {
     };
     return (
         <div>
-            <div className='topContainer'>
+            <div className='pageContainer'>
                 <h1>Matkat</h1>
             </div>
             <SortingList type={"journeys"} sortBy={sortBy} sortByOrder={sortByOrder} handleSorting={handleSorting} />

@@ -1,7 +1,12 @@
 .infoCard {
-    width: 50%;
+    width: 100%;
 }
 
 h1 {
     font-size: 30px;
+}
+
+p {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
 }

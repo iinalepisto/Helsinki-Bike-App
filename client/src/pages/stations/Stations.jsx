@@ -38,7 +38,7 @@ const Stations = () => {
 
     return (
         <div>
-            <div className='topContainer'>
+            <div className='pageContainer'>
                 <h1>Asemat</h1>
             </div>
             <SortingList type={"stations"} sortBy={sortBy} sortByOrder={sortByOrder} handleSorting={handleSorting} />

@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: row;
     color: black;
-    margin: 1rem;
 }
 
 .sortingList div {
@@ -10,7 +9,6 @@
     display: flex;
     font-weight: bold;
     width: 25%;
-    margin: 5px;
 }
 
 .sortingList div:hover {

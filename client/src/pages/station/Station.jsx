@@ -25,7 +25,7 @@ const Station = () => {
         <>
             {Object.keys(station).length === 0 ?
                 (<Spinner />) : (
-                    <div className='stationContainer'>
+                    <div className='pageContainer'>
                         <StationInfo station={station} />
                         <StationMap station={station} />
                     </div>
