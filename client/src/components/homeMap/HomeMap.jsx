@@ -7,7 +7,8 @@ import icon from 'leaflet/dist/images/marker-icon.png';
 import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
-const HomeMap = () => {
+
+const HomeMap = ({ stations }) => {
 
     let DefaultIcon = L.icon({
         iconUrl: icon,
@@ -22,17 +23,19 @@ const HomeMap = () => {
 
     L.Marker.prototype.options.icon = DefaultIcon;
     return (
-        <MapContainer center={[60.1699, 24.9384]} zoom={11} scrollWheelZoom={false} >
+        <MapContainer className='map' center={[60.1699, 24.9384]} zoom={11} scrollWheelZoom={false} >
             <TileLayer
                 url='https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.png'
                 attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 subdomains='abcd'
             />
-            <Marker position={[60.1699, 24.9384]} >
-                <Popup>
-
-                </Popup>
-            </Marker>
+            {stations.map(station => (
+                <Marker key={station.id} position={[station.y, station.x]}>
+                    <Popup>
+                        {station.nimi}
+                    </Popup>
+                </Marker>
+            ))}
 
         </MapContainer>
     )

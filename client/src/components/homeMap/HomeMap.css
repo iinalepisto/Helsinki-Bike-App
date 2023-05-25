@@ -1,0 +1,9 @@
+.map {
+    width: inherit;
+    height: 100vh;
+}
+
+.headline {
+    font-size: 10vh;
+    text-align: center;
+}
