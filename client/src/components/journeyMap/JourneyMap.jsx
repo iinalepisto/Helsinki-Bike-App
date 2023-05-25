@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import L from 'leaflet';
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconRetinaUrl from 'leaflet/dist/images/marker-icon-2x.png';
@@ -49,7 +49,7 @@ const JourneyMap = ({ journey }) => {
             {isLoading ? (
                 <Spinner />
             ) : (
-                <MapContainer center={departureCoordinates} zoom={11} scrollWheelZoom={false} >
+                <MapContainer center={departureCoordinates} zoom={12} scrollWheelZoom={false} >
                     <TileLayer
                         url='https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.png'
                         attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -65,6 +65,8 @@ const JourneyMap = ({ journey }) => {
                             {`Pääteasema ${journey.returnStationName}`}
                         </Popup>
                     </Marker>
+                    <Polyline positions={[departureCoordinates, returnCoordinates]} color="rgb(0, 122, 201)" weight={5} />
+
                 </MapContainer>
             )}
         </>
