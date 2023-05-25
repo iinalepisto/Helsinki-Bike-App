@@ -25,6 +25,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 .pageContainer>* {
@@ -34,4 +35,9 @@
 
 .pageContainer>*:last-child {
   margin-right: 0;
+}
+
+.search {
+  height: 4vh;
+  text-align: center;
 }

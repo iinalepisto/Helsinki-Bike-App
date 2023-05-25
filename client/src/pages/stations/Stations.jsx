@@ -26,7 +26,6 @@ const Stations = () => {
                     const res = await fetchSearchStations(page, limit, sortBy, sortByOrder, search);
                     setStations(res.stations);
                     setCount(res.totalCount);
-                    console.log(res.totalCount);
                 }
             } catch (error) {
                 console.error("Error while fetching stations data:", error);
@@ -49,9 +48,16 @@ const Stations = () => {
         <div>
             <div className='pageContainer'>
                 <h1>Asemat</h1>
-                <input type='text'
+                <input className='search'
+                    type='text'
                     value={search || ""}
-                    onChange={(e) => setSearch(e.target.value)} />
+                    placeholder="Etsi"
+                    onChange={(e) => {
+                        setSearch(e.target.value);
+                        setPage(1);
+                    }} />
+                <div>
+                </div>
             </div>
             <SortingList type={"stations"} sortBy={sortBy} sortByOrder={sortByOrder} handleSorting={handleSorting} />
             <ListItems items={stations} type={"stations"} />
