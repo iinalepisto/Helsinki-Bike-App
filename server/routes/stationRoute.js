@@ -4,7 +4,7 @@ import { allStationCount, allStations, allStationsCoordinates, singleStation, st
 const stationRouter = express.Router();
 
 stationRouter.get("/", allStations);
-stationRouter.get("/stationsCount", allStationCount);
+stationRouter.get("/totalcount", allStationCount);
 stationRouter.get("/coordinates", allStationsCoordinates);
 stationRouter.get("/:id", singleStation);
 stationRouter.get("/:id/coordinates", stationCoordinates);

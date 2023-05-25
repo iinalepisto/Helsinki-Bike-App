@@ -13,6 +13,15 @@ export const fetchStations = async (page, limit, sortBy, sortByOrder) => {
     }
 }
 
+export const fetchAllStationCount = async () => {
+    try {
+        const res = await api.get(`/api/stations/totalcount`);
+        return res.data;
+    } catch (error) {
+        throw new Error("Error while fetching stations data");
+    }
+}
+
 export const fetchStation = async (id) => {
     try {
         const res = await api.get(`/api/stations/${id}`);

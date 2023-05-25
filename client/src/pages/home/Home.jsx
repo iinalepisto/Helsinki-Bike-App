@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import HomeMap from '../../components/homeMap/HomeMap';
-import { fetchAllStationCoordinates, fetchJourneyCount } from "../../utils/api";
+import { fetchAllStationCoordinates, fetchJourneyCount, fetchAllStationCount } from "../../utils/api";
 import "./Home.css";
 import Spinner from '../../components/spinner/Spinner';
 
 const Home = () => {
     const [allStationCoordinates, setAllStationCoordinates] = useState([]);
     const [journeyCount, setJourneyCount] = useState();
+    const [stationCount, setStationCount] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -15,8 +16,10 @@ const Home = () => {
                 setIsLoading(true);
                 const coordinatesRes = await fetchAllStationCoordinates();
                 const journeyCountRes = await fetchJourneyCount();
+                const stationCountRes = await fetchAllStationCount();
                 setAllStationCoordinates(coordinatesRes);
                 setJourneyCount(journeyCountRes.totalCount);
+                setStationCount(stationCountRes);
                 setIsLoading(false);
             } catch (error) {
                 console.error("Error while fetching stations data:", error);
@@ -38,8 +41,8 @@ const Home = () => {
                             <p>{journeyCount}</p>
                         </div>
                         <div className='statsBox'>
-                            <h3>Tehtyjä matkoja</h3>
-                            <p>{journeyCount}</p>
+                            <h3>Asemien määrä</h3>
+                            <p>{stationCount}</p>
                         </div>
                         <div className='statsBox'>
                             <h3>Tehtyjä matkoja</h3>
