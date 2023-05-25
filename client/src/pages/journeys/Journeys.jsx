@@ -19,13 +19,18 @@ const Journeys = () => {
         const fetchData = async () => {
             try {
                 setIsLoading(true);
-                if (count === 0) {
-                    const countRes = await fetchJourneyCount();
-                    setCount(countRes.totalCount);
+                if (!search) {
+                    if (count === 0) {
+                        const countRes = await fetchJourneyCount();
+                        setCount(countRes.totalCount);
+                    }
+                    const res = await fetchJourneys(page, limit, sortBy, sortByOrder);
+                    setJourneys(res.journeys);
+                    setIsLoading(false);
+                } else {
+
                 }
-                const res = await fetchJourneys(page, limit, sortBy, sortByOrder);
-                setJourneys(res.journeys);
-                setIsLoading(false);
+
             } catch (error) {
                 console.error("Error while fetching stations data:", error);
             }
@@ -48,12 +53,7 @@ const Journeys = () => {
                 <h1>Matkat</h1>
                 <input className='search'
                     type='text'
-                    value={search || ""}
                     placeholder="Etsi"
-                //onChange={(e) => {
-                //setSearch(e.target.value);
-                //setPage(1);
-                //}} 
                 />
                 <div>
                 </div>

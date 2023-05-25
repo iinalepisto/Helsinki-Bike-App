@@ -83,3 +83,12 @@ export const fetchJourneyCount = async () => {
         throw new Error("Error while fetching count data");
     }
 }
+
+export const fetchSearchJourneys = async (search, searchBy) => {
+    try {
+        const res = await api.get(`/api/journeys?search=${search}&searchby=${searchBy}`);
+        return res.data
+    } catch (error) {
+        throw new Error("Error while fetching journey data");
+    }
+}

@@ -28,7 +28,7 @@ export const searchJourneys = async (req, res) => {
         sortBy = "departureTime",
         sortOrder = "asc",
         search,
-        searchBy = "duration",
+        searchBy = "durationSec",
     } = req.query;
 
     try {
@@ -36,7 +36,7 @@ export const searchJourneys = async (req, res) => {
 
         if (search) {
             const regex = new RegExp(search, "i");
-            if (searchBy === "duration") {
+            if (searchBy === "durationSec") {
                 query = { duration: regex };
             } else if (searchBy === "station") {
                 query = {
