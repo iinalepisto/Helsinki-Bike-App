@@ -1,8 +1,12 @@
 import Journey from "../models/journey.js";
 
 export const allJourneys = async (req, res) => {
-    const { page = 0, limit = 20, sortBy = "departureTime", sortOrder = "asc" } = req.query;
-
+    const {
+        page = 0,
+        limit = 20,
+        sortBy = "departureTime",
+        sortOrder = "asc"
+    } = req.query;
     try {
         const sortObj = {};
         sortObj[sortBy] = sortOrder === "desc" ? -1 : 1;
@@ -12,6 +16,50 @@ export const allJourneys = async (req, res) => {
             .sort(sortObj)
             .exec();
         res.status(200).json({ journeys });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
+export const searchJourneys = async (req, res) => {
+    const {
+        page = 0,
+        limit = 20,
+        sortBy = "departureTime",
+        sortOrder = "asc",
+        search,
+        searchBy = "duration",
+    } = req.query;
+
+    try {
+        let query = {};
+
+        if (search) {
+            const regex = new RegExp(search, "i");
+            if (searchBy === "duration") {
+                query = { duration: regex };
+            } else if (searchBy === "station") {
+                query = {
+                    $or: [
+                        { departureStation: regex },
+                        { arrivalStation: regex },
+                    ],
+                };
+            }
+        }
+
+        const totalCount = await Journey.countDocuments(query).exec();
+
+        const sortObj = {};
+        sortObj[sortBy] = sortOrder === "desc" ? -1 : 1;
+
+        const journeys = await Journey.find(query)
+            .skip(page * limit)
+            .limit(limit)
+            .sort(sortObj)
+            .exec();
+
+        res.status(200).json({ totalCount, journeys });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

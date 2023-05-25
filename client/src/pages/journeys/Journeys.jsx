@@ -13,6 +13,7 @@ const Journeys = () => {
     const [sortBy, setSortBy] = useState("departureStationName");
     const [sortByOrder, setSortByOrder] = useState("asc");
     const [isLoading, setIsLoading] = useState(false);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -45,6 +46,17 @@ const Journeys = () => {
         <div>
             <div className='pageContainer'>
                 <h1>Matkat</h1>
+                <input className='search'
+                    type='text'
+                    value={search || ""}
+                    placeholder="Etsi"
+                //onChange={(e) => {
+                //setSearch(e.target.value);
+                //setPage(1);
+                //}} 
+                />
+                <div>
+                </div>
             </div>
             <SortingList type={"journeys"} sortBy={sortBy} sortByOrder={sortByOrder} handleSorting={handleSorting} />
             {isLoading ? (
