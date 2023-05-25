@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchStations } from '../../utils/api';
+import { fetchStations, fetchSearchStations } from '../../utils/api';
 import CustomPagination from '../../components/pagination/CustomPagination';
 import ListItems from '../../components/listItems/ListItems';
 import SortingList from '../../components/sortingList/SortingList';
@@ -12,19 +12,28 @@ const Stations = () => {
     const [limit, setLimit] = useState(20);
     const [sortBy, setSortBy] = useState("nimi");
     const [sortByOrder, setSortByOrder] = useState("asc");
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetchStations(page, limit, sortBy, sortByOrder);
-                setStations(res.stations);
-                setCount(res.totalCount);
+                if (!search) {
+                    const res = await fetchStations(page, limit, sortBy, sortByOrder);
+                    setStations(res.stations);
+                    setCount(res.totalCount);
+                }
+                else {
+                    const res = await fetchSearchStations(page, limit, sortBy, sortByOrder, search);
+                    setStations(res.stations);
+                    setCount(res.totalCount);
+                    console.log(res.totalCount);
+                }
             } catch (error) {
                 console.error("Error while fetching stations data:", error);
             }
         };
         fetchData();
-    }, [page, limit, sortBy, sortByOrder]);
+    }, [page, limit, sortBy, sortByOrder, search]);
 
     const handleSorting = (event) => {
         const value = event.currentTarget.getAttribute("value");
@@ -40,6 +49,9 @@ const Stations = () => {
         <div>
             <div className='pageContainer'>
                 <h1>Asemat</h1>
+                <input type='text'
+                    value={search || ""}
+                    onChange={(e) => setSearch(e.target.value)} />
             </div>
             <SortingList type={"stations"} sortBy={sortBy} sortByOrder={sortByOrder} handleSorting={handleSorting} />
             <ListItems items={stations} type={"stations"} />

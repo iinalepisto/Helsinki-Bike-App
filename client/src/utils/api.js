@@ -12,6 +12,14 @@ export const fetchStations = async (page, limit, sortBy, sortByOrder) => {
         throw new Error("Error while fetching stations data");
     }
 }
+export const fetchSearchStations = async (page, limit, sortBy, sortByOrder, search) => {
+    try {
+        const res = await api.get(`/api/stations?page=${page - 1}&limit=${limit}&sortBy=${sortBy}&sortOrder=${sortByOrder}&search=${search}`);
+        return res.data;
+    } catch (error) {
+        throw new Error("Error while fetching stations data");
+    }
+}
 
 export const fetchAllStationCount = async () => {
     try {
