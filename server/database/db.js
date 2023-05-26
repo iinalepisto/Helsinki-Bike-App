@@ -20,21 +20,12 @@ const startMongoDB = async () => {
             useUnifiedTopology: true,
         });
         console.log("DB connected");
+
+        await readStationFiles(stations);
+
     } catch (error) {
         console.error("Error connecting to database ", error);
-        return;
     }
-    try {
-        await readJourneyFiles(journey1, journey2, journey3);
-        await readStationFiles(stations);
-    } catch (error) {
-        console.error("Error while importing data: ", error);
-    }
-
-
-
 };
-
-startMongoDB();
 
 export default startMongoDB;

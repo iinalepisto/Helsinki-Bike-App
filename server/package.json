@@ -9,29 +9,28 @@
     "start": "node index.js",
     "test": "jest"
   },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "csv-parser": "^3.0.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "fs": "^0.0.1-security",
+    "jest": "^29.5.0",
     "mongoose": "^7.1.1",
     "path": "^0.12.7"
   },
   "devDependencies": {
+    "@babel/core": "^7.21.8",
     "@babel/preset-env": "^7.21.5",
-    "jest": "^29.5.0",
-    "nodemon": "^2.0.22",
-    "supertest": "^6.3.3"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ]
-  },
-  "transform": {
-    "^.+\\.js$": "babel-jest"
+    "babel-jest": "^29.5.0",
+    "nodemon": "^2.0.22"
   }
 }
