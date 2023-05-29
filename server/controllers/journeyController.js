@@ -68,7 +68,7 @@ export const searchJourneys = async (req, res) => {
 export const getTotalJourneyCount = async (req, res) => {
     try {
         const totalCount = await Journey.countDocuments({}).exec();
-        res.status(200).json({ totalCount: totalCount });
+        res.status(200).json(totalCount);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
