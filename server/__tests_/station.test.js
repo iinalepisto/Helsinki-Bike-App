@@ -43,7 +43,6 @@ describe("stations", () => {
     describe("get coordinates of every station", () => {
         it("should return 200 status and an array of station coordinates", async () => {
             const response = await supertest(app).get("/api/stations/coordinates");
-            console.log(response.body);
 
             expect(response.statusCode).toBe(200);
             expect(Array.isArray(response.body)).toBe(true);
@@ -55,6 +54,63 @@ describe("stations", () => {
                     expect(station).toHaveProperty(field);
                 });
             });
+        });
+    });
+
+    describe("get single station", () => {
+        it("should return 200 status and station object", async () => {
+            const id = 501;
+            const response = await supertest(app).get(`/api/stations/${id}`);
+
+            expect(response.statusCode).toBe(200);
+            expect(response.body.id).toBe(id);
+        });
+    });
+
+    describe("get single station", () => {
+        it("should return 500 status for invalid id", async () => {
+            const invalidId = "invalidId";
+            const response = await supertest(app).get(`/api/stations/${invalidId}`);
+
+            expect(response.statusCode).toBe(500);
+        });
+    });
+
+    describe("get single station", () => {
+        it("should return 404 status for id not existing", async () => {
+            const invalidId = 10;
+            const response = await supertest(app).get(`/api/stations/${invalidId}`);
+
+            expect(response.statusCode).toBe(404);
+        });
+    });
+
+    describe("get single station coordinates", () => {
+        it("should return 200 status and station coordinates", async () => {
+            const id = 501;
+            const response = await supertest(app).get(`/api/stations/${id}/coordinates`);
+
+            expect(response.statusCode).toBe(200);
+            expect(response.body).toHaveProperty('x');
+            expect(response.body).toHaveProperty('y');
+        });
+    });
+
+    describe("get single station coordinates", () => {
+        it("should return 500 status for invalid id", async () => {
+            const invalidId = "invalidId";
+            const response = await supertest(app).get(`/api/stations/${invalidId}/coordinates`);
+
+            expect(response.statusCode).toBe(500);
+        });
+    });
+
+    describe("get single station coordinates", () => {
+        it("should return 404 status for id not existing", async () => {
+            const invalidId = 100;
+            const response = await supertest(app).get(`/api/stations/${invalidId}/coordinates`);
+
+            expect(response.statusCode).toBe(404);
         });
     });
 });
