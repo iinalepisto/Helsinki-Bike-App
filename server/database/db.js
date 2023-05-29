@@ -22,6 +22,7 @@ const startMongoDB = async () => {
         console.log("DB connected");
 
         await readStationFiles(stations);
+        await readJourneyFiles(journey1, journey2, journey3)
 
     } catch (error) {
         console.error("Error connecting to database ", error);
