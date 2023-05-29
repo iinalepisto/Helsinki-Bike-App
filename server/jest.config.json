@@ -5,5 +5,10 @@
         "**/**/*.test.js"
     ],
     "forceExit": true,
-    "clearMocks": true
+    "clearMocks": true,
+    "resetMocks": true,
+    "restoreMocks": true,
+    "transform": {
+        "^.+\\.js$": "babel-jest"
+    }
 }

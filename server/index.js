@@ -1,26 +1,16 @@
-import express from "express";
-import cors from "cors";
 import dotenv from "dotenv";
 import "./database/db.js";
-import journeyRouter from "./routes/journeyRoute.js";
-import stationRouter from "./routes/stationRoute.js";
 import startMongoDB from "./database/db.js";
+import createServer from "./server.js";
 
 dotenv.config();
 
-const app = express();
-app.use(express.json());
-app.use(cors());
-
-app.use("/api/journeys", journeyRouter);
-app.use("/api/stations", stationRouter);
+const app = createServer();
 
 const port = process.env.PORT || 8000;
 
-app.listen(port, () => {
+app.listen(port, async () => {
     console.log(`Server running on port: ${port}`);
+
+    await startMongoDB();
 })
-
-startMongoDB();
-
-export default app;
