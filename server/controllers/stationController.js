@@ -53,11 +53,43 @@ export const singleStation = async (req, res) => {
 
         const startingJourneysCount = await Journey.countDocuments({ departureStationId: station.id }).exec();
         const endingJourneysCount = await Journey.countDocuments({ returnStationId: station.id }).exec();
+
+        const startingJourneys = await Journey.find({ departureStationId: station.id }).exec();
+        const endingJourneys = await Journey.find({ returnStationId: station.id }).exec();
+
+        let startingDistanceSum = 0;
+        let startingTimeSum = 0;
+        startingJourneys.forEach((journey) => {
+            startingDistanceSum += journey.coveredDistanceM;
+            startingTimeSum += journey.durationSec;
+        });
+        const startingAverageDistance = startingDistanceSum / startingJourneysCount;
+        const startingAverageTime = startingTimeSum / startingJourneysCount;
+
+        let endingDistanceSum = 0;
+        let endingTimeSum = 0;
+        endingJourneys.forEach((journey) => {
+            endingDistanceSum += journey.coveredDistanceM;
+            endingTimeSum += journey.durationSec;
+        });
+        const endingAverageDistance = endingDistanceSum / endingJourneysCount;
+        const endingAverageTime = endingTimeSum / endingJourneysCount;
+        res.status(200).json({
+            ...station.toObject(),
+            startingJourneysCount,
+            endingJourneysCount,
+            startingAverageDistance,
+            startingAverageTime,
+            endingAverageDistance,
+            endingAverageTime,
+        });
+        /*
         res.status(200).json({
             ...station.toObject(),
             startingJourneysCount,
             endingJourneysCount,
         });
+        */
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
