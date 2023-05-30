@@ -2,6 +2,7 @@ import supertest from "supertest";
 import createServer from "../server.js";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import Journey from "../models/journey.js";
 
 dotenv.config();
 
@@ -42,7 +43,9 @@ describe("journeys", () => {
 
     describe("get single journey", () => {
         it("should return 200 status and journey object", async () => {
-            const id = "64748dd9361c5fab34f2a187";
+            const journey = await Journey.findOne({});
+            const id = journey._id.toString();
+
             const response = await supertest(app).get(`/api/journeys/${id}`);
 
             expect(response.statusCode).toBe(200);

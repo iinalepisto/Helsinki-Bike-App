@@ -5,7 +5,7 @@ import readJourneyFiles from "./importJourneyData.js";
 import readStationFiles from "./importStationData.js";
 
 dotenv.config();
-const url = process.env.MONGO_TEST_URL;
+const url = process.env.MONGO_URL;
 
 const journey1 = path.join(process.cwd(), "../server/csvFiles", "2021-05.csv");
 const journey2 = path.join(process.cwd(), "../server/csvFiles", "2021-06.csv");

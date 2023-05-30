@@ -2,10 +2,12 @@ import supertest from "supertest";
 import createServer from "../server.js";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import readStationFiles from "../database/importStationData.js";
 
 dotenv.config();
 
 const app = createServer();
+
 
 describe("stations", () => {
 
