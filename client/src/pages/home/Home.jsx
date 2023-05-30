@@ -18,9 +18,10 @@ const Home = () => {
                 const journeyCountRes = await fetchJourneyCount();
                 const stationCountRes = await fetchAllStationCount();
                 setAllStationCoordinates(coordinatesRes);
-                setJourneyCount(journeyCountRes.totalCount);
+                setJourneyCount(journeyCountRes);
                 setStationCount(stationCountRes);
                 setIsLoading(false);
+                console.log(journeyCountRes);
             } catch (error) {
                 console.error("Error while fetching stations data:", error);
             }
