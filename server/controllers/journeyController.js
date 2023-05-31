@@ -101,3 +101,21 @@ export const singleJourney = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 }
+
+export const findLongestDurationJourney = async (req, res) => {
+    try {
+        const longestDurationJourney = await Journey.findOne().sort({ durationSec: -1 });
+        res.status(200).json(longestDurationJourney);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
+export const findLongestDistanceJourney = async (req, res) => {
+    try {
+        const longestDistanceJourney = await Journey.findOne().sort({ coveredDistanceM: -1 });
+        res.status(200).json(longestDistanceJourney);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}

@@ -20,13 +20,6 @@ const Journeys = () => {
             try {
                 setIsLoading(true);
                 if (!search) {
-                    /*
-                    if (count === 0) {
-                        const countRes = await fetchJourneyCount();
-                        setCount(countRes);
-                        console.log(countRes);
-                    }
-                    */
                     const res = await fetchJourneys(page, limit, sortBy, sortByOrder);
                     setJourneys(res.journeys);
                     setCount(res.totalCount);

@@ -92,3 +92,22 @@ export const fetchSearchJourneys = async (page, limit, sortBy, sortByOrder, sear
         throw new Error("Error while fetching journey data");
     }
 }
+
+export const fetchLongestDistance = async () => {
+    try {
+        const res = await api.get(`/api/journeys/longestdistance`);
+        return res.data;
+    } catch (error) {
+        throw new Error("Error while fetching journey data");
+    }
+}
+
+export const fetchLongestDuration = async () => {
+    try {
+        const res = await api.get(`/api/journeys/longestduration`);
+        return res.data;
+    } catch (error) {
+        throw new Error("Error while fetching journey data");
+
+    }
+}
