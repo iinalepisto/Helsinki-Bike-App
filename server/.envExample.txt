@@ -1,0 +1,5 @@
+Create a .env file and copy these variables and fill in your port number and URLs.
+
+PORT = "" 
+MONGO_URL = ""
+MONGO_TEST_URL = ""
