@@ -83,13 +83,6 @@ export const singleStation = async (req, res) => {
             endingAverageDistance,
             endingAverageTime,
         });
-        /*
-        res.status(200).json({
-            ...station.toObject(),
-            startingJourneysCount,
-            endingJourneysCount,
-        });
-        */
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

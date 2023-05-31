@@ -69,7 +69,7 @@ export const fetchJourneys = async (page, limit, sortBy, sortByOrder) => {
 export const fetchJourney = async (id) => {
     try {
         const res = await api.get(`/api/journeys/${id}`);
-        return res.data
+        return res.data;
     } catch (error) {
         throw new Error("Error while fetching journey data");
     }
@@ -84,10 +84,10 @@ export const fetchJourneyCount = async () => {
     }
 }
 
-export const fetchSearchJourneys = async (search, searchBy) => {
+export const fetchSearchJourneys = async (page, limit, sortBy, sortByOrder, search) => {
     try {
-        const res = await api.get(`/api/journeys?search=${search}&searchby=${searchBy}`);
-        return res.data
+        const res = await api.get(`/api/journeys?page=${page - 1}&limit=${limit}&sortBy=${sortBy}&sortByOrder=${sortByOrder}&search=${search}`);
+        return res.data;
     } catch (error) {
         throw new Error("Error while fetching journey data");
     }

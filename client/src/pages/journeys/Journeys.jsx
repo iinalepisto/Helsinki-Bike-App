@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchJourneyCount, fetchJourneys } from '../../utils/api';
+import { fetchJourneyCount, fetchJourneys, fetchSearchJourneys } from '../../utils/api';
 import SortingList from '../../components/sortingList/SortingList';
 import ListItems from '../../components/listItems/ListItems';
 import CustomPagination from '../../components/pagination/CustomPagination';
@@ -20,15 +20,22 @@ const Journeys = () => {
             try {
                 setIsLoading(true);
                 if (!search) {
+                    /*
                     if (count === 0) {
                         const countRes = await fetchJourneyCount();
-                        setCount(countRes.totalCount);
+                        setCount(countRes);
+                        console.log(countRes);
                     }
+                    */
                     const res = await fetchJourneys(page, limit, sortBy, sortByOrder);
                     setJourneys(res.journeys);
+                    setCount(res.totalCount);
                     setIsLoading(false);
                 } else {
-
+                    const res = await fetchSearchJourneys(page, limit, sortBy, sortByOrder, search);
+                    setJourneys(res.journeys);
+                    setCount(res.totalCount);
+                    setIsLoading(false);
                 }
 
             } catch (error) {
@@ -36,7 +43,7 @@ const Journeys = () => {
             }
         };
         fetchData();
-    }, [page, limit, sortBy, sortByOrder]);
+    }, [page, limit, sortBy, sortByOrder, search]);
 
     const handleSorting = (event) => {
         const value = event.currentTarget.getAttribute("value");
@@ -53,8 +60,12 @@ const Journeys = () => {
                 <h1>Matkat</h1>
                 <input className='search'
                     type='text'
+                    value={search || ""}
                     placeholder="Etsi"
-                />
+                    onChange={(e) => {
+                        setSearch(e.target.value);
+                        setPage(1);
+                    }} />
                 <div>
                 </div>
             </div>

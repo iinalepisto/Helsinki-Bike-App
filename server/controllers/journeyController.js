@@ -5,17 +5,33 @@ export const allJourneys = async (req, res) => {
         page = 0,
         limit = 20,
         sortBy = "departureTime",
-        sortOrder = "asc"
+        sortOrder = "asc",
+        search
     } = req.query;
     try {
+        let query = {};
+        if (search) {
+            const regex = new RegExp(search, "i");
+            query = {
+                $or: [
+                    { departureStationName: regex },
+                    { returnStationName: regex },
+                ],
+            };
+        }
+
+        const totalCount = await Journey.countDocuments(query).exec();
+
         const sortObj = {};
         sortObj[sortBy] = sortOrder === "desc" ? -1 : 1;
-        const journeys = await Journey.find({})
+
+        const journeys = await Journey.find(query)
             .skip(page * limit)
             .limit(limit)
             .sort(sortObj)
             .exec();
-        res.status(200).json({ journeys });
+        res.status(200).json({ totalCount, journeys });
+
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
