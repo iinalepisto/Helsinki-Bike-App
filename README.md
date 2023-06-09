@@ -3,21 +3,53 @@ This is the pre-assignment for Solita Dev Academy Finland 2023. This project use
 
 ## Running project locally
 1. Install [node](https://nodejs.org/en) and [git](https://git-scm.com/).
-2. Clone the repository. Run `git clone git@github.com:iinalepisto/Helsinki-Bike-App.git`
-3. For the database you can you e.g mongodb locally by installing it from [here](https://www.mongodb.com/docs/manual/installation/), or mongodb Atlas.
-4. Run `cd Helsinki-Bike-App/server`
-5. Create a .env file to the server folder. Copy the variables from .envExample.txt file to the .env file and fill in your server side port number and URLs for your mongoDB. You can use notepad to create .env file and name it .env and select file type as "All files". 
-6. Download three datasets of journey data. Save each file to the csvFiles folder with the default name. The data is owned by City Bike Finland.
+2. Clone the repository:
+* Open terminal on your computer and run `git clone git@github.com:iinalepisto/Helsinki-Bike-App.git`.
+* After cloning the repository, you have a folder called Helsinki-Bike-App that has server and client folders in it.
+3. Set up the database:
+  * Option 1. Install MongoDB locally by following the instructions [here](https://www.mongodb.com/docs/manual/installation/).
+  * Option 2. Use MongoDB Atlas. Sign up for an account [here](https://www.mongodb.com/cloud/atlas) and create a new cluster.
+4. Set up environment variables: 
+* Create a .env file to the server folder. You can use notepad to create .env file and name it .env and select file type as "All files".
+* Copy the variables from .envExample.txt file to the .env file.
+* Fill in your server side port number and connection string for your mongoDB. 
+* Example variables PORT = "8000", MONGO_URL = "mongodb://127.0.0.1:27017/bikedb", MONGO_TEST_URL = "mongodb://127.0.0.1:27017/bikedb-test"
+* [Here](https://www.mongodb.com/docs/compass/current/connect/#std-label-connect-run-compass) you can find more information about the connection string.
+5. Download the journey data:
+* Download three datasets of journey data. Save each file to the `csvFiles` folder that is located in server the folder with the default name. The data is owned by City Bike Finland.
 * <https://dev.hsl.fi/citybikes/od-trips-2021/2021-05.csv> 
 * <https://dev.hsl.fi/citybikes/od-trips-2021/2021-06.csv>
 * <https://dev.hsl.fi/citybikes/od-trips-2021/2021-07.csv>
-7. Download station data. Save it to csvFiles folder with the default name. 
-* <https://opendata.arcgis.com/datasets/726277c507ef4914b0aec3cbcfcbfafc_0.csv>
-8. Change testJourneys.txt and testStations.txt to .csv.
-9. Run `npm install` on the server folder.
-10. Cd to client folder and run `npm install`.
-11. Run `npm run dev` on server folder. Server will start importing data from the csv files.
-12. After succesfully importing data, run `npm run start` on client folder.
+6. Download station data:
+*  Download the station data from [here](https://opendata.arcgis.com/datasets/726277c507ef4914b0aec3cbcfcbfafc_0.csv).
+* Save the file to the `csvFiles` folder in the project directory.
+7. Convert files to CSV format:
+* Rename `testJourneys.txt` to `testJourneys.csv`.
+* Rename `testStations.txt` to `testStations.csv`.
+8.  Install dependencies:
+* Open a terminal and navigate to the `server` folder.
+* Run the following command to install server dependencies:
+  ```
+  npm install
+  ```
+* Open another terminal and navigate to the `client` folder.
+* Run the following command to install client dependencies:
+  ```
+  npm install
+  ```
+9. Start the server:
+* In the terminal, navigate to the `server` folder.
+* Run the following command to start importing data from the CSV files:
+  ```
+  npm run dev
+  ```
+  It can take several minutes for the import to finish. It will let you know when importing is finished.
+10. Start the client:
+* After you have finished importing data, open a separate terminal and navigate to the `client` folder.
+* Run the following command to start the client application:
+  ```
+  npm run start
+  ```
 
 Now you can view the application on browser http://localhost:3000 .
 
